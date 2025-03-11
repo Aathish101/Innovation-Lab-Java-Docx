@@ -1,0 +1,84 @@
+class Battery {
+    private int capacity;
+
+    public Battery(int capacity) {
+        this.capacity = capacity;
+    }
+
+    public int getCapacity() {
+        return capacity;
+    }
+
+    public void setCapacity(int capacity) {
+        this.capacity = capacity;
+    }
+
+    public void showBatteryInfo() {
+        System.out.println("Battery Capacity: " + capacity + "mAh");
+    }
+}
+
+class Mobile {
+    private Battery battery;     public Mobile(int batteryCapacity) {
+        this.battery = new Battery(batteryCapacity);
+    }
+
+    public void showMobileInfo() {
+        System.out.println("Mobile Details:");
+        battery.showBatteryInfo();
+    }
+}
+
+class Employee {
+    private String name;
+    private int id;
+
+    public Employee(String name, int id) {
+        this.name = name;
+        this.id = id;
+    }
+
+    public void showEmployeeInfo() {
+        System.out.println("Employee ID: " + id + ", Name: " + name);
+    }
+}
+
+import java.util.ArrayList;
+import java.util.List;
+
+class Department {
+    private String name;
+    private List<Employee> employees; 
+    public Department(String name) {
+        this.name = name;
+        this.employees = new ArrayList<>();
+    }
+
+    public void addEmployee(Employee employee) {
+        employees.add(employee);
+    }
+
+    public void showDepartmentInfo() {
+        System.out.println("Department: " + name);
+        System.out.println("Employees:");
+        for (Employee emp : employees) {
+            emp.showEmployeeInfo();
+        }
+    }
+}
+
+public class Main {
+    public static void main(String[] args) {
+        Mobile mobile = new Mobile(5000);
+        mobile.showMobileInfo();
+
+        Department dept = new Department("IT");
+        Employee emp1 = new Employee("Alice", 101);
+        Employee emp2 = new Employee("Bob", 102);
+
+        dept.addEmployee(emp1);
+        dept.addEmployee(emp2);
+
+        dept.showDepartmentInfo();
+    }
+}
