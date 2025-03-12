@@ -1,0 +1,39 @@
+class Computer {
+    class Processor {
+        void showProcessor() {
+            System.out.println("Processor inside Computer");
+        }
+    }
+    
+    void startComputer() {
+        class LocalInnerClass implements Runnable {
+            @Override
+            public void run() {
+                System.out.println("Local Inner Class is running...");
+            }
+        }
+        
+        Runnable localRunnable = new LocalInnerClass();
+        localRunnable.run();
+    }
+}
+
+public class InnerClassDemo {
+    public static void main(String[] args) {
+        Computer computer = new Computer();
+        
+        Computer.Processor processor = computer.new Processor();
+        processor.showProcessor();
+        
+        computer.startComputer();
+        
+        Runnable anonymousRunnable = new Runnable() {
+            @Override
+            public void run() {
+                System.out.println("Anonymous Inner Class is running...");
+            }
+        };
+        
+        anonymousRunnable.run();
+    }
+}
